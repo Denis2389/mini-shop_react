@@ -1,11 +1,18 @@
 import './App.css'
-import ProductCard from './components/Main/Card/ProductCard'
+import Main from './pages/Main/Main';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ProductDetail from './pages/ProductDetail/ProductDetail';
 
 function App() {
 
   return (
     <div className='container'>
-      <ProductCard />
+      <Router>
+        <Routes>
+          <Route path='/' element={<Main />}/>
+          <Route path='/product/:id' element={<ProductDetail />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

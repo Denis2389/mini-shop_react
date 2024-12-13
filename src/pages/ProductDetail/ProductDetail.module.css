@@ -1,0 +1,51 @@
+.productTitleWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.productTitleWrapper img {
+    width: 600px;
+    margin: 60px 60px 50px 70px;
+}
+
+.wrapper button {
+    width: 200px;
+    height: 40px;
+    border: none;
+    background-color: gray;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.wrapper button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.productTitleWrapper h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+    margin-left: 80px;
+}
+
+.price {
+    margin-left: 80px;
+}
+
+.priceCategoryWrapper {
+    display: flex;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.price > span {
+    color: green;
+}
