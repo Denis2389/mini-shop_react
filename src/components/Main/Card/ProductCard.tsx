@@ -1,6 +1,12 @@
 import styles from './ProductCard.module.css'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import CircularProgress from '@mui/material/CircularProgress';
 
 interface Card {
     id: number,
@@ -15,16 +21,22 @@ function ProductCard() {
 
     const [cards, setCards] = useState<Card[]>([])
     const [loading, setLoading] = useState<boolean>(false)
-    const [sortOrder, setSortOrder] = useState('asc')
+    const [sortOrder, setSortOrder] = useState('')
     const [selectedCategory, setSelectedCategory] = useState('all')
 
-    const handleSortChange = (order: string) => {
-        setSortOrder(order)
+
+    const handleSortChange = (event: SelectChangeEvent<string>) => {
+      setSortOrder(event.target.value)
     }
 
-    const handleCategoryChange = (category: string) => {
-        setSelectedCategory(category)
-    }
+
+    // const handleSortChange = (order: string) => {
+    //     setSortOrder(order)
+    // }
+
+    const handleCategoryChange = (event: SelectChangeEvent<string>) => {
+      setSelectedCategory(event.target.value)
+    } 
 
     useEffect(() => {
         async function fetchProduct() {
@@ -42,31 +54,66 @@ function ProductCard() {
         fetchProduct()
     }, [])
 
-    // cards.filter((card) => {
-    //     if ()
-    // }) //////// Next add filter to asc and all products !!!! /////////
+    const sortedAndFilteredProducts = cards
+      .filter((card) => {
+        if(selectedCategory === 'all') return true;
+        return card.category === selectedCategory
+      })
+      .sort((a, b) => {
+        if(sortOrder === 'asc') return a.price - b.price;
+        return b.price - a.price
+      });
+
 
     if (loading) {
-        return <div>Loading web site...</div>
+        return (
+          <div>
+            <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center' }}>
+              <CircularProgress size={80}/>
+            </Box>
+          </div>
+        );
     }
 
   return (
     <div className={styles.productCard}>
-      <select onChange={(e) => handleSortChange(e.target.value)}>
-        Price
-        <option value="asc">Ascending</option>
-        <option value="desc">Escending</option>
-      </select>
+      <div className={styles.selectWrap}>
+        <Box sx={{ minWidth: 120 }}>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Price</InputLabel>
+            <Select
+              label="Price"
+              labelId="demo-simple-select-label"
+              value={sortOrder}
+              onChange={handleSortChange}
+            >
+              Price
+              <MenuItem value="asc">To ascending</MenuItem>
+              <MenuItem value="desc">To escending</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
 
-      <select onChange={(e) => handleCategoryChange(e.target.value)}>
-        Category
-        <option value="all">All category</option>
-        <option value="electronics">Electronics</option>
-        <option value="jewelery">Jewelery</option>
-      </select>
+        <Box sx={{ minWidth: 120 }}>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Category</InputLabel>
+            <Select
+              onChange={handleCategoryChange}
+              value={selectedCategory}
+              label="Category"
+              labelId="demo-simple-select-label"
+            >
+              Category
+              <MenuItem value="all">All category</MenuItem>
+              <MenuItem value="electronics">Electronics</MenuItem>
+              <MenuItem value="jewelery">Jewelery</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
+      </div>
 
       <ul>
-        {cards.map((card) => (
+        {sortedAndFilteredProducts.map((card) => (
           <li key={card.id}>
             <div className={styles.photo}>
               <img src={card.image} alt={card.title} />

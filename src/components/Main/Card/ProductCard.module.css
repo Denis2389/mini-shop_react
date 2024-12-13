@@ -46,3 +46,30 @@
     color: #666;
     font-size: 0.8rem;
 }
+
+.selectWrap select {
+    width: 200px;
+    height: 40px;
+    padding: 5px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    color: #333;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+}
+
+.selectWrap select:hover {
+    border-color: #0056b3;
+}
+
+.selectWrap select:focus {
+    border-color: #0056b3;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.selectWrap option {
+    background-color: #f8f9fa;
+    color: #333;
+}
