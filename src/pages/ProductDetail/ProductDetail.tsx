@@ -56,7 +56,7 @@ const ProductDetail = () => {
             <h3 className={styles.price}>Price: <span>{product.price}$</span></h3>
           </div>
         </div>
-        <p><span>Overview:</span>{product.description}</p>
+        <p className={styles.overview}><span>Overview: </span>{product.description}</p>
       </div>
     );
 }
