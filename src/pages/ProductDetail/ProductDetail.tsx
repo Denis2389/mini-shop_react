@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
 import styles from './ProductDetail.module.css'
 import Loading from "../../components/Loading/Loading";
+import Basket from "../../components/Basket/Basket";
 
 interface Card {
     id: number,
@@ -36,6 +37,7 @@ const ProductDetail = () => {
         fetchProduct()
     }, [id])
 
+
     if (loading) {
         return (
             <Loading />
@@ -48,15 +50,24 @@ const ProductDetail = () => {
 
     return (
       <div className={styles.wrapper}>
-        <button onClick={() => navigate('/')}>Back</button>
+        <button onClick={() => navigate("/")}>Back</button>
+        <button>Basket{}</button>
         <div className={styles.productTitleWrapper}>
           <img src={product.image} alt={product.title} />
           <div>
             <h1>{product.title}</h1>
-            <h3 className={styles.price}>Price: <span>{product.price}$</span></h3>
+            <div className={styles.priceBtnWrapper}>
+              <h3 className={styles.price}>
+                Price: <span>{product.price}$</span>
+              </h3>
+              <button onClick={() => addToCart(product)}>Add to basket</button>
+            </div>
           </div>
         </div>
-        <p className={styles.overview}><span>Overview: </span>{product.description}</p>
+        <p className={styles.overview}>
+          <span>Overview: </span>
+          {product.description}
+        </p>
       </div>
     );
 }

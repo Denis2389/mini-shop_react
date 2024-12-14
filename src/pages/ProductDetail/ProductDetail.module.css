@@ -57,3 +57,9 @@
     margin-left: 70px;
 }
 
+.priceBtnWrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
