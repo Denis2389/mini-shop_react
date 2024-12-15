@@ -1,0 +1,62 @@
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+.list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 100px;
+}
+
+h3 {
+    max-width: 300px;
+    margin-top: 20px;
+}
+
+p {
+    max-width: 50px;
+    margin: 0 auto;
+    margin-top: 15px;
+    border: 1px solid gray;
+    padding: 5px 20px 5px 12px;
+    border-radius: 5px;
+    transition: all 0.25s ease;
+    margin-bottom: 25px;
+}
+
+p:hover {
+    background-color: antiquewhite;
+}
+
+img {
+    margin: 0 auto;
+}
+
+li {
+    border-bottom: 1px solid black;
+}
+
+li:last-child {
+    border: none;
+}
+
+.btnItemContainer {
+    display: flex;
+    align-items: center;
+    gap: 250px;
+}
+
+.backBtn {
+    border: none;
+    background: none;
+    transition: transform 0.3s ease;
+    margin: 20px 0 0 20px;
+}
+
+.backBtn:hover {
+    transform: scale(1.2);
+}

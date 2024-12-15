@@ -8,6 +8,7 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../../Loading/Loading';
+import { FaShoppingBasket } from "react-icons/fa";
 
 interface Card {
     id: number,
@@ -70,7 +71,7 @@ function ProductCard() {
 
 
     if (loading) {
-      <Loading />
+      return <Loading />
     }
 
   return (
@@ -101,26 +102,35 @@ function ProductCard() {
           </Box>
 
           <Box sx={{ minWidth: 120 }}>
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Category</InputLabel>
-              <Select
-                onChange={handleCategoryChange}
-                value={selectedCategory}
-                label="Category"
-                labelId="demo-simple-select-label"
-              >
-                Category
-                <MenuItem value="all">All category</MenuItem>
-                <MenuItem value="electronics">Electronics</MenuItem>
-                <MenuItem value="jewelery">Jewelery</MenuItem>
-              </Select>
-            </FormControl>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Category</InputLabel>
+                <Select
+                  onChange={handleCategoryChange}
+                  value={selectedCategory}
+                  label="Category"
+                  labelId="demo-simple-select-label"
+                >
+                  Category
+                  <MenuItem value="all">All category</MenuItem>
+                  <MenuItem value="electronics">Electronics</MenuItem>
+                  <MenuItem value="jewelery">Jewelery</MenuItem>
+                </Select>
+              </FormControl>
+              <button className={styles.basketBtn} onClick={() => navigate("/basket")}>
+                <FaShoppingBasket size={42} />
+              </button>
+            </div>
           </Box>
         </div>
       </div>
       <ul>
         {productToDisplay.map((card) => (
-          <li className={styles.list} key={card.id} onClick={() => navigate(`/product/${card.id}`)} >
+          <li
+            className={styles.list}
+            key={card.id}
+            onClick={() => navigate(`/product/${card.id}`)}
+          >
             <div className={styles.photo}>
               <img src={card.image} alt={card.title} />
             </div>

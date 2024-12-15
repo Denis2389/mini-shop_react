@@ -51,6 +51,7 @@
 .selectWrap {
     display: flex;
     gap: 20px;
+    align-items: center;
 }
 
 .selectWrap select {
@@ -103,4 +104,10 @@
 
 .list {
     cursor: pointer;
+}
+
+.basketBtn {
+    border: none;
+    background: none;
+    
 }

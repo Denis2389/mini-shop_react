@@ -3,7 +3,11 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
 import styles from './ProductDetail.module.css'
 import Loading from "../../components/Loading/Loading";
-import Basket from "../../components/Basket/Basket";
+import { Toaster, toast } from "react-hot-toast";
+import { FaShoppingBasket } from "react-icons/fa";
+import { IoReturnDownBack } from "react-icons/io5";
+import { IoIosAddCircleOutline } from "react-icons/io";
+// import Basket from "../../components/Basket/Basket";
 
 interface Card {
     id: number,
@@ -14,7 +18,7 @@ interface Card {
     category: string,
 }
 
-const ProductDetail = () => {
+const ProductDetail = ({ addToCart, cart }) => {
 
     const { id } = useParams<{ id: string }>();
     const [product, setProduct] = useState<Card | null>(null)
@@ -50,8 +54,20 @@ const ProductDetail = () => {
 
     return (
       <div className={styles.wrapper}>
-        <button onClick={() => navigate("/")}>Back</button>
-        <button>Basket{}</button>
+        <Toaster position="top-right" reverseOrder={false} />
+        <div className={styles.backSvgWrapper}>
+          <button className={styles.backIcons} onClick={() => navigate("/")}>
+            <IoReturnDownBack size={32} />
+          </button>
+          <button
+            onClick={() => navigate("/basket")}
+            className={styles.iconButton}
+          >
+            <FaShoppingBasket size={32}/>
+            {cart.length}
+          </button>
+        </div>
+
         <div className={styles.productTitleWrapper}>
           <img src={product.image} alt={product.title} />
           <div>
@@ -60,7 +76,20 @@ const ProductDetail = () => {
               <h3 className={styles.price}>
                 Price: <span>{product.price}$</span>
               </h3>
-              <button onClick={() => addToCart(product)}>Add to basket</button>
+              <button
+              className={styles.btnAdd}
+                onClick={() => {
+                  addToCart({
+                    id: product.id,
+                    title: product.title,
+                    price: product.price,
+                    image: product.image,
+                  });
+                  toast.success("Successfully added to basket");
+                }}
+              >
+                Click to add<IoIosAddCircleOutline size={32} />
+              </button>
             </div>
           </div>
         </div>
