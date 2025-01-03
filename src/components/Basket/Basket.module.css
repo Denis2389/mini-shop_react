@@ -60,3 +60,23 @@ li:last-child {
 .backBtn:hover {
     transform: scale(1.2);
 }
+
+.delBtnWrap {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.deleteBtn {
+    margin-left: 130px;
+    margin-bottom: 10px;
+    border: none;
+    background: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.deleteBtn:hover {
+    scale: 1.2;
+    color: green;
+}

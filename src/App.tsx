@@ -28,7 +28,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Main />}/>
           <Route path='/product/:id' element={<ProductDetail addToCart={addToCart} cart={cartItems}/>} />
-          <Route path='/basket' element={<Basket cart={cartItems}/>} />
+          <Route path='/basket' element={<Basket cart={cartItems} setCart={setCartItems} />} />
         </Routes>
       </Router>
     </div>
