@@ -38,19 +38,26 @@ function ProductCard() {
     } 
 
     useEffect(() => {
+
+      const storeProducts = localStorage.getItem('products')
+
+      if (storeProducts) {
+        setCards(JSON.parse(storeProducts));
+      } else {
         async function fetchProduct() {
             try {
                 setLoading(true)
                 const response = await axios.get('https://fakestoreapi.com/products')
                 setCards(response.data)
+                localStorage.setItem('products', JSON.stringify(response.data))
             } catch (error) {
                 console.log(error)
             } finally {
                 setLoading(false)
             }
         }
-
         fetchProduct()
+      }
     }, [])
 
     const sortedAndFilteredProducts = cards

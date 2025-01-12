@@ -63,7 +63,7 @@ const ProductDetail = ({ addToCart, cart }) => {
             onClick={() => navigate("/basket")}
             className={styles.iconButton}
           >
-            <FaShoppingBasket size={32}/>
+            <FaShoppingBasket size={27}/>
             {cart.length}
           </button>
         </div>

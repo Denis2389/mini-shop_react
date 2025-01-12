@@ -27,8 +27,9 @@ const Basket = ({ cart, setCart }: BasketProps) => {
         <div className={styles.btnItemContainer}>
           <button className={styles.backBtn} onClick={() => navigate("/")}>
             <IoReturnDownBack size={32} />
+            Home
           </button>
-          <h2>Items in basket: {cart.length}</h2>
+          <h2>{cart.length === 0 ? 'Basket empty 😞' : `Items in basket: ${cart.length}`}</h2>
         </div>
         <div className={styles.container}>
           <ul className={styles.list}>

@@ -80,3 +80,11 @@ li:last-child {
     scale: 1.2;
     color: green;
 }
+
+.backBtn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 20px;
+    font-weight: 500;
+}
